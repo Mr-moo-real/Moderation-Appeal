@@ -96,7 +96,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">User Report Scenario</div>
+        <div class="header">Moderation Appeal Scenario</div>
         <div class="chat-window" id="chatWindow"></div>
         <div class="button-container" id="buttonContainer">
             <!-- Buttons will be dynamically added here -->
@@ -106,7 +106,7 @@
         // Define conversation stages
         const stages = [
             {
-                prompt: 'I want to report this user who sent me a scammed link, their discord username is (Username)',
+                prompt: 'I want to appeal a ban on behalf of my friend. They were banned 3 days ago and for something that they said they didnt do. Could anything be done about this?',
                 responses: [
                     { text: 'Close the ticket', correct: false, incorrectFeedback: 'Not quite! This is the final step in completing a ticket.', nextStage: 1 },
                     { text: 'Moderate the user', correct: false, incorrectFeedback: 'If you have no evidence to back up what you are doing, you may be incorrectly moderating an innocent person!', nextStage: 1 },
@@ -114,7 +114,7 @@
                 ]
             },
             {
-                prompt: 'Correct! When handling a ticket, claiming should always be the first action.',
+                prompt: 'die bestie.',
                 responses: [
                     { text: 'Look up the reported users username to check for infractions', correct: true, nextStage: 3 },
                     { text: 'Escalate the ticket', correct: false, incorrectFeedback: 'There are no current reasons to escalate this ticket to an Admin+ at this stage.', nextStage: 2 },
@@ -125,14 +125,14 @@
                 prompt: 'You claim the ticket using the provided button within the ticket.',
                 responses: [
                     { text: 'Escalate the ticket', correct: false, incorrectFeedback: 'There are no current reasons to escalate this ticket to an Admin+ at this stage.', nextStage: 4 },
-                    { text: 'Look up the reported users username to check for infractions', correct: true, feedback: 'Correct, in a lot of cases, you can find reported users breaking the rules in the server, where you can then moderate them without asking for evidence.', nextStage: 3 },
-                    { text: 'Ask for a screenshot', correct: false, incorrectFeedback: 'While asking for evidence is crucial, in some occasions you may be able to find evidence of the reported user breaking the rules within the server, in which case, a screenshot is not necessary.', nextStage: 4 }
+                    { text: 'Ask for the ID of the user who they are appealing on behalf of.', correct: true, feedback: 'Correct, having the ID of the user allows us to look into their case and determine whether or not the ban was justified.', nextStage: 3 },
+                    { text: 'Ask for a screenshot', correct: false, incorrectFeedback: 'Evidence is usually not required for a moderation appeal, as we are able to view all appropriate moderation logs and message history.', nextStage: 4 }
                 ]
             },
             {
-                prompt: 'You search for messages, deleted messages and moderation logs for the user. In this case, you find nothing to support what the user is claiming.',
+                prompt: 'You search their user ID and after some research find that they were accidentally moderated for something that someone else did.',
                 responses: [
-                    { text: 'Request evidence (Screenshot, etc.)', correct: true, feedback: 'Correct! If you cannot find any evidence yourself, you should turn to the user who created the ticket to provide evidence to back up their claims.', nextStage: 4 },
+                    { text: 'Escalate the ticket', correct: true, feedback: 'Correct! If you cannot find any evidence yourself, you should turn to the user who created the ticket to provide evidence to back up their claims.', nextStage: 4 },
                     { text: 'Insult the user who made the ticket', correct: false, incorrectFeedback: 'umm... no.', nextStage: 5 },
                     { text: 'Ask for a user ID', correct: false, incorrectFeedback: 'While this is a good way to identify someone, in most cases you will be able to find and identify the user being reported by their username.', nextStage: 5 }
                 ]
