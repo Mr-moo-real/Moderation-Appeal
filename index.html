@@ -142,9 +142,9 @@
             {
                 prompt: '"I can confirm that the account was falsely moderated and will be promptly unbanned. Please allow up to 30 minutes for this to take effect.',
                 responses: [
-                    { text: 'Close the ticket', correct: true, feedback: 'Correct! Asking for a full, uncropped screenshot will allow you to make sure they aren’t providing edited or out of context messages. This could be done through a personalised message or through the /tag full screen command', nextStage: 5 },
-                    { text: 'Request to close the ticket', correct: false, incorrectFeedback: 'This is a perfectly fine option! If you are feeling overwhelmed or are unsure what to do. You can ask for help or for someone else to take over your ticket in #ticket-discussion!', nextStage: 6 },
-                    { text: 'Unban the user', correct: true, feedback: 'Correct! To do this, you should head to the #ticket-discussion channel and include the ticket number/channel link, user ID and reason why they should be unbanned. Then a Sr. Moderator+ can unban the user.', nextStage: 6 }
+                    { text: 'Ban the user who made the ticket', correct: false, incorrectFeedback: 'Do not ban them, as there is literally no reason to, unless they have admitted to severely breaking our rules.', nextStage: 5 },
+                    { text: 'Request to close the ticket', correct: false, incorrectFeedback: 'While this is a viable option, you should make sure all appropriate actions are taken before a ticket is closed.', nextStage: 6 },
+                    { text: 'Unban the user', correct: true, feedback: 'Correct! To do this, you should head to the #ticket-discussion channel and include the ticket number/channel link, user ID and reason why they should be unbanned. Then a Sr. Moderator+ can unban the user.', nextStage: 5 }
                 ]
             },
             {
