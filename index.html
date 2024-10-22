@@ -106,10 +106,10 @@
         // Define conversation stages
         const stages = [
             {
-                prompt: 'I want to appeal a ban on behalf of my friend. They were banned 3 days ago and for something that they said they didnt do. Could anything be done about this?',
+                prompt: 'I want to appeal a ban from this server on behalf of my friend. They were banned 3 days ago and for something that they said they didnt do. Could anything be done about this?',
                 responses: [
                     { text: 'Close the ticket', correct: false, incorrectFeedback: 'Not quite! This is the final step in completing a ticket.', nextStage: 1 },
-                    { text: 'Moderate the user', correct: false, incorrectFeedback: 'If you have no evidence to back up what you are doing, you may be incorrectly moderating an innocent person!', nextStage: 1 },
+                    { text: 'Unban their friend', correct: false, incorrectFeedback: 'You should not unban someone without valid evidence! Moderation appeals should only be performed if valid evidence is found that they were wrongly banned/moderated', nextStage: 1 },
                     { text: 'Claim the ticket', correct: true, feedback: 'Correct! When handling a ticket, claiming should always be the first action.', nextStage: 2 }
                 ]
             },
@@ -124,7 +124,7 @@
             {
                 prompt: 'You claim the ticket using the provided button within the ticket.',
                 responses: [
-                    { text: 'Escalate the ticket', correct: false, incorrectFeedback: 'There are no current reasons to escalate this ticket to an Admin+ at this stage.', nextStage: 4 },
+                    { text: 'Escalate the ticket', correct: false, incorrectFeedback: 'While escalations are commonly required with moderation appeals, they are not always necessary.', nextStage: 4 },
                     { text: 'Ask for the ID of the user who they are appealing on behalf of.', correct: true, feedback: 'Correct, having the ID of the user allows us to look into their case and determine whether or not the ban was justified.', nextStage: 3 },
                     { text: 'Ask for a screenshot', correct: false, incorrectFeedback: 'Evidence is usually not required for a moderation appeal, as we are able to view all appropriate moderation logs and message history.', nextStage: 4 }
                 ]
@@ -132,25 +132,25 @@
             {
                 prompt: 'You search their user ID and after some research find that they were accidentally moderated for something that someone else did.',
                 responses: [
-                    { text: 'Escalate the ticket', correct: true, feedback: 'Correct! If you cannot find any evidence yourself, you should turn to the user who created the ticket to provide evidence to back up their claims.', nextStage: 4 },
-                    { text: 'Insult the user who made the ticket', correct: false, incorrectFeedback: 'umm... no.', nextStage: 5 },
-                    { text: 'Ask for a user ID', correct: false, incorrectFeedback: 'While this is a good way to identify someone, in most cases you will be able to find and identify the user being reported by their username.', nextStage: 5 }
+                    { text: 'Close the ticket', correct: false, incorrectFeedback: 'You should never close a ticket unless the user reported has been moderated or if all appropriate information has been provided.', nextStage: 4 },
+                    { text: 'Explain why their friend was falsely moderated and that they will be unbanned', correct: false, incorrectFeedback: 'You should never share information about a different account with a user not associated. This is due to privacy, and as such, only the owner of the account can request information such as that.', nextStage: 4 },
+                    { text: 'Confirm that the false moderation is true and that the account will be unbanned', correct: true, feedback: 'Correct! Providing information is crucial in ensuring that the other user understands what is happening. It is also important to keep sensitivie information, such as moderation reasoning, private.', nextStage: 4 }
                 ]
             },
             {
-                prompt: 'You request evidence from the user in the form of a screenshot. The user send you a screenshot, however it is cropped.',
+                prompt: '"I can confirm that the account was falsely moderated and will be promptly unbanned. Please allow up to 30 minutes for this to take effect.',
                 responses: [
-                    { text: 'request for an uncropped screenshot', correct: true, feedback: 'Correct! Asking for a full, uncropped screenshot will allow you to make sure they aren’t providing edited or out of context messages. This could be done through a personalised message or through the /tag full screen command', nextStage: 5 },
-                    { text: 'Transfer the ticket to another moderator', correct: false, incorrectFeedback: 'This is a perfectly fine option! If you are feeling overwhelmed or are unsure what to do. You can ask for help or for someone else to take over your ticket in #ticket-discussion!', nextStage: 6 },
-                    { text: 'Moderate the user based off of the provided evidence', correct: false, incorrectFeedback: 'Cropped evidence can be easily taken out of context or can be easily edited. Evidence should always come in the form of an uncropped screenshot, otherwise it should not be accepted.', nextStage: 6 }
+                    { text: 'Close the ticket', correct: true, feedback: 'Correct! Asking for a full, uncropped screenshot will allow you to make sure they aren’t providing edited or out of context messages. This could be done through a personalised message or through the /tag full screen command', nextStage: 5 },
+                    { text: 'Request to close the ticket', correct: false, incorrectFeedback: 'This is a perfectly fine option! If you are feeling overwhelmed or are unsure what to do. You can ask for help or for someone else to take over your ticket in #ticket-discussion!', nextStage: 6 },
+                    { text: 'Unban the user', correct: true, feedback: 'Correct! To do this, you should head to the #ticket-discussion channel and include the ticket number/channel link, user ID and reason why they should be unbanned. Then a Sr. Moderator+ can unban the user.', nextStage: 6 }
                 ]
             },
             {
-                prompt: 'The user sends through an uncropped screenshot with no notable discrepancies.',
+                prompt: 'You send the unban request in the appropriate channel with all appropriate information, which is promptly handled.',
                 responses: [
-                    { text: 'Close the ticket', correct: false, incorrectFeedback: 'You have not moderated the user yet! You should not close the ticket unless you have a good reason to.', nextStage: 7 },
-                    { text: 'Moderate the user based off of the evidence provided', correct: false, incorrectFeedback: 'Due to an increased amount of false reports, all PC screenshots should be escalated', nextStage: 7 },
-                    { text: 'Escalate ticket to Helen', correct: true, feedback: 'Correct! all PC screenshots should be escalated to Helen (@nursehyperion) due to an increase in false reports. This should be done following the guide in “Escalation” category (found on the home page of these ticket guides). This concludes this scenario, well done!', nextStage: null }
+                    { text: 'Close the ticket', correct: false, incorrectFeedback: 'There is crucial information in the ticket that could be missed by closing the ticket!', nextStage: 7 },
+                    { text: 'Request to close the ticket', correct: true, feedback: 'Correct! Since there is information within the ticket that the user has to read, you should request to close the ticket so that they can close it once they have read everything. This marks the end of this scenario. Keep in mind that all moderation appeals should be handled by someone with a higher rank than the person who did the moderation. Well done!', nextStage: null },
+                    { text: 'Escalate ticket to Helen', correct: false, incorrectFeedback: 'There is no reason to escalate the ticket! There is nothing else that has to be done!', nextStage: null }
                 ]
             },
             {
